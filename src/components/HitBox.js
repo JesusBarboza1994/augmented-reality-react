@@ -7,9 +7,8 @@ export default function HitBox(){
   const reticleRef = useRef()
   const [cubes, setCubes] = useState([])
   useHitTest((hitMatrix, hit) => {
-    // use hitMatrix to position any object on the real life surface
     hitMatrix.decompose(reticleRef.position, reticleRef.quaternion, reticleRef.scale)
-    reticleRef.current.rotation.set(-Math.PI / 2,0,0)
+    // reticleRef.current.rotation.set(-Math.PI / 2,0,0)
   })
 
   const placeCube = (e) =>{
@@ -25,7 +24,7 @@ export default function HitBox(){
         return <Box key={id} position={position}/>
       })}
       <Interactive onSelect={placeCube}>
-        <mesh ref={reticleRef}>
+        <mesh ref={reticleRef} positionX={-Math.PI / 2}>
           <ringGeometry args={[0.1, 0.25, 32]}/>
           <meshStandardMaterial color={"white"}/>
         </mesh>
