@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useVideoTexture, OrbitControls } from '@react-three/drei'
 import urlVideo from "./mrc.mp4";
 import { useXR } from '@react-three/xr';
@@ -9,6 +9,28 @@ import { useLoader } from '@react-three/fiber';
 export default function Video() {
   const { isPresenting } = useXR()
   const imageTexture = useLoader(TextureLoader, image)
+  const [audioStarted, setAudioStarted] = useState(false);
+
+  useEffect(() => {
+    const audio = new Audio("/mrc.mp3");
+    console.log("AUDIO", audio);
+
+    if (!isPresenting && !audioStarted) {
+      // Esperar a que el usuario interactúe con el documento y luego intentar reproducir el audio
+      document.addEventListener('click', () => {
+        audio.play();
+        audio.loop= true
+        setAudioStarted(true);
+      }, { once: true });
+    }
+
+    return () => {
+      document.removeEventListener('click', () => {
+        audio.play();
+        setAudioStarted(true);
+      });
+    };
+  }, [isPresenting, audioStarted]);
   if(!isPresenting){
     return(
       <>
@@ -36,7 +58,7 @@ export default function Video() {
 }
 function VideoMaterial({ urlVideo }) {
     const texture = useVideoTexture(urlVideo)
-    return <meshBasicMaterial map={texture} toneMapped={true}/>
+    return <meshBasicMaterial map={texture} toneMapped={true} />
 }
 
 async function createAudio(url) {
