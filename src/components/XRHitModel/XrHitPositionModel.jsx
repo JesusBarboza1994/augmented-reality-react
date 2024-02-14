@@ -1,10 +1,13 @@
-import { OrbitControls } from "@react-three/drei"
+import { OrbitControls, Text } from "@react-three/drei"
 import { Interactive, useHitTest, useXR } from "@react-three/xr"
 import { useRef, useState } from "react"
 import Model from "./Model"
+import { useThree } from "@react-three/fiber"
 
 const XRHitPositionModel = ({rotation}) => {
   const reticleRef = useRef()
+  const { viewport } = useThree();
+
   const {isPresenting} = useXR()
   useHitTest((hitMatrix, hit) => {
     hitMatrix.decompose(reticleRef.current.position, reticleRef.current.quaternion, reticleRef.current.scale);

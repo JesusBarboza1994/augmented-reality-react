@@ -36,7 +36,7 @@ export default function Video() {
 }
 function VideoMaterial({ urlVideo }) {
     const texture = useVideoTexture(urlVideo)
-    return <meshBasicMaterial map={texture} import urlAudio toneMapped={false} />
+    return <meshBasicMaterial map={texture} toneMapped={true}/>
 }
 
 async function createAudio(url) {

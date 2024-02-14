@@ -24,6 +24,7 @@ const XRHitModelContainer = () => {
       <button type="toggle" style={{position: "absolute", top: 0, zIndex:100}} onClick={handleClick}><FaPause /></button>}
       <ARButton sessionInit={{requiredFeatures: ['hit-test']}}>Miralo en AR!</ARButton>
       <Canvas>
+        
         <XR>
           <XRHitPositionModel rotation={rotation}/>
         </XR>
