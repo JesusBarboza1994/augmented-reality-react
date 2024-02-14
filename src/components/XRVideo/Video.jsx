@@ -25,7 +25,7 @@ export default function Video() {
   return (
     <>
       <OrbitControls/>
-      <mesh position={[0, 0, -3]}>
+      <mesh position={[0, 0, -10]}>
         <planeGeometry args={[3, 3]} />
         <Suspense fallback={null}>
             <VideoMaterial urlVideo={urlVideo} />
