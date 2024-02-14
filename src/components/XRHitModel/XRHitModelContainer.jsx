@@ -4,6 +4,11 @@ import XRHitPositionModel from "./XrHitPositionModel"
 import Model from "./Model"
 
 const XRHitModelContainer = () => {
+  const handleClick = (event) => {
+    console.log(event)
+    console.log('Hiciste clic en el canvas!');
+  };
+
   return (
     <>
       <ARButton sessionInit={{requiredFeatures: ['hit-test']}}>Miralo en AR!</ARButton>

@@ -20,8 +20,10 @@ const Model = ({ position, rotation=[Math.PI/2,0,0], axis_rotation="z" }) => {
       objRef.current.traverse(child => {
         if (child.isMesh) {
           const material = new THREE.MeshStandardMaterial({
-            map: colorMap, // Textura para el color
-            color: 0xFF0000, // Color blanco como base
+            normalMap: colorMap, // Textura para el color
+            color: 0xFF0000,
+            metalness: 0.7,
+            roughness: 0.2 
           });
           child.material = material;
         }
@@ -34,7 +36,8 @@ const Model = ({ position, rotation=[Math.PI/2,0,0], axis_rotation="z" }) => {
   return (
     <>
       <OrbitControls/>
-      <ambientLight intensity={0.2} />
+      <ambientLight intensity={1} />
+      <pointLight position={[0, -10, 0]} />
       <directionalLight />
       <group ref={objRef} position={position}>
         <primitive object={obj} scale={[0.005, 0.005, 0.005]} rotation={rotation}/>
