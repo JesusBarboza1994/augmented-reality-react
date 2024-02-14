@@ -6,7 +6,7 @@ import Model from "./Model"
 const XRHitModelContainer = () => {
   return (
     <>
-      <ARButton sessionInit={{requiredFeatures: ['hit-test']}}/>
+      <ARButton sessionInit={{requiredFeatures: ['hit-test']}}>Miralo en AR!</ARButton>
       <Canvas>
         <XR>
           <XRHitPositionModel/>
