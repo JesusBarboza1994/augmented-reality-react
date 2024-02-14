@@ -6,7 +6,7 @@ const VideoContainer = () => {
   const audio = new Audio("/mrc.mp3"); 
   return(
     <>
-      <ARButton onClick={() => audio.play()}>Mira el video</ARButton>
+      <ARButton>Mira el video</ARButton>
       <Canvas>
         <XR>
           <Video videoURL={"./mrc.mp4"}/>
