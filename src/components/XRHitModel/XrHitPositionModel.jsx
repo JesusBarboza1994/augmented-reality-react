@@ -3,7 +3,7 @@ import { Interactive, useHitTest, useXR } from "@react-three/xr"
 import { useRef, useState } from "react"
 import Model from "./Model"
 
-const XRHitPositionModel = () => {
+const XRHitPositionModel = ({rotation}) => {
   const reticleRef = useRef()
   const {isPresenting} = useXR()
   useHitTest((hitMatrix, hit) => {
@@ -23,7 +23,7 @@ const XRHitPositionModel = () => {
     return(
       <>
       <ambientLight/>
-      <Model position={[0,-1,1]} rotation={[0,0,0]} axis_rotation="y"/>
+      <Model position={[0,-1,1]} rotation={[0,0,0]} axis_rotation="y" frame_rotation={rotation}/>
       </>
     )
   }
